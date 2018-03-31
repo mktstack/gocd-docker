@@ -31,4 +31,14 @@ RUN apt-get update -y \
   && git config --global user.name "GoCD" \
   && git config --global user.email go@mkts.com.au
 
+ARG tower_host=tower
+ARG tower_user=admin
+ARG tower_password=admin
+
+RUN apt-get install -y python-pip \
+  && pip install ansible-tower-cli \
+  && tower-cli config host ${tower_host} \
+  && tower-cli config username ${tower_user} \
+  && tower-cli config password ${tower_password}}
+
 CMD ["/start-agent.sh"]

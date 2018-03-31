@@ -1,5 +1,6 @@
 # gocd-docker
 Minimal GoCD Server and Agent for Docker
+Now with git, for those crazy enough to want to do something in response to a code push.
 
 Server:
 [![Docker Stars](https://img.shields.io/docker/stars/tanob/gocd-server.svg)](https://registry.hub.docker.com/u/tanob/gocd-server/)
