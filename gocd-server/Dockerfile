@@ -16,7 +16,6 @@ RUN set -x \
 RUN set -x \
  # Redirect log output to stdout
  && ln -sf /dev/stdout /var/log/go-server/go-server.log \
-
  # Uses default environment values from start script
  && rm /etc/default/go-server
 
@@ -26,6 +25,11 @@ VOLUME /var/lib/go-server /etc/go /var/go
 
 # Start script requires JAVA_HOME to be specified
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+
+RUN apt-get update -y \
+  && apt-get install -y git-core \
+  && git config --global user.name "GoCD" \
+  && git config --global user.email go@mkts.com.au
 
 # Default Go Server HTTP and HTTPS ports
 EXPOSE 8153 8154

@@ -20,12 +20,15 @@ RUN set -x \
 COPY start-agent.sh /
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre \
-
     # Agent will look for server at this hostname
     GO_SERVER=go-server \
-
     # Need to set this otherwise work dir will be /usr/share/go-agent
     # and auto register won't work
     AGENT_WORK_DIR=/var/lib/go-agent
+
+RUN apt-get update -y \
+  && apt-get install -y git-core \
+  && git config --global user.name "GoCD" \
+  && git config --global user.email go@mkts.com.au
 
 CMD ["/start-agent.sh"]
